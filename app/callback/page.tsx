@@ -1,12 +1,12 @@
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 
-export default async function Home() {
+export default async function CallBack() {
   const { isAuthenticated, getUser } = getKindeServerSession();
 
   if (!(await isAuthenticated())) {
     return redirect(
-      "/api/auth/login?post_login_redirect_url=http://localhost:3000/callback",
+      "/api/auth/login?post_login_redirect_url=https://localhost:3000/callback",
     );
   }
   const user = await getUser();
@@ -16,6 +16,6 @@ export default async function Home() {
       "/api/auth/login?post_login_redirect_url=http://localhost:3000/callback",
     );
   }
-
-  return <main>hi{user.given_name}</main>;
+  //TODO:check if user is already ther in neo4j
+  //if not create the user db
 }
