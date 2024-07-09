@@ -30,4 +30,5 @@ export default async function CallBack() {
       lastname: user.family_name ?? undefined,
     });
   }
+  return redirect("/");
 }
